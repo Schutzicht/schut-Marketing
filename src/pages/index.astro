@@ -45,21 +45,21 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
           <!-- mini trust strip -->
           <div class="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
             <div class="flex items-center gap-2.5">
-              <img src="/brand/google-ads-display-certified.svg" alt="Google Ads Certified" class="h-9 w-auto" />
+              <img src="/brand/google-ads-display-certified.svg" alt="Google Ads Certified" width="36" height="36" class="h-9 w-auto" loading="lazy" decoding="async" />
               <div class="text-[12px] leading-tight">
                 <p class="font-semibold">Google Ads</p>
                 <p class="text-ink-soft">Display Certified</p>
               </div>
             </div>
             <div class="flex items-center gap-2.5">
-              <img src="/brand/bronze-partner.svg" alt="Google Bronze Partner" class="h-9 w-auto" />
+              <img src="/brand/bronze-partner.svg" alt="Google Bronze Partner" width="36" height="36" class="h-9 w-auto" loading="lazy" decoding="async" />
               <div class="text-[12px] leading-tight">
                 <p class="font-semibold">Bronze Partner</p>
                 <p class="text-ink-soft">Google Partners</p>
               </div>
             </div>
             <div class="hidden sm:flex items-center gap-2.5">
-              <img src="/brand/agensea-favicon.png" alt="Agensea" class="h-9 w-9 rounded-full object-cover" />
+              <img src="/brand/agensea-favicon.png" alt="Agensea" width="36" height="36" class="h-9 w-9 rounded-full object-cover" loading="lazy" decoding="async" />
               <div class="text-[12px] leading-tight">
                 <p class="font-semibold">Partner Agensea</p>
                 <p class="text-ink-soft">sinds {site.partnerSince}</p>
@@ -73,7 +73,7 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
           <div class="relative aspect-square max-w-[460px] mx-auto">
             <!-- main portrait card -->
             <div class="absolute inset-0 rounded-jumbo overflow-hidden bg-canvas-2 border border-line shadow-[0_30px_80px_-30px_rgba(11,27,35,0.3)]">
-              <img src="/people/jorik.webp" alt="Jorik Schut, eigenaar Schut Marketing" class="w-full h-full object-cover" />
+              <img src="/people/jorik.webp" alt="Jorik Schut, eigenaar Schut Marketing" width="640" height="800" class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
               <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent text-canvas">
                 <p class="text-[11px] uppercase tracking-[0.2em] text-canvas/70">Hoi, ik ben</p>
                 <p class="text-xl font-semibold">Jorik Schut</p>
@@ -118,7 +118,7 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
         <div class="overflow-hidden flex-1 mask-fade-x">
           <div class="marquee-track gap-14 md:gap-20 items-center">
             {[...projects, ...projects].filter((p) => p.logo).map((p) => (
-              <img src={p.logo!} alt={p.name} class="h-10 md:h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
+              <img src={p.logo!} alt={p.name} width="160" height="80" class="h-10 md:h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" loading="lazy" decoding="async" />
             ))}
           </div>
         </div>
@@ -179,7 +179,7 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
       <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         <div class="lg:col-span-6" data-reveal>
           <div class="rounded-jumbo overflow-hidden border border-canvas/15 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] relative">
-            <img src="/people/team-agensea.webp" alt="Team Agensea" class="w-full h-auto block" />
+            <img src="/people/team-agensea.webp" alt="Team Agensea" width="880" height="1100" class="w-full h-auto block" loading="lazy" decoding="async" />
             <div class="absolute top-4 left-4 chip bg-mint text-ink">
               <span>Team Agensea</span>
             </div>
@@ -209,7 +209,7 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
             </div>
             <div class="rounded-card border border-mint/40 bg-mint/10 p-5">
               <div class="flex items-center gap-3">
-                <img src="/brand/agensea-favicon.png" alt="Agensea" class="h-7 w-7 rounded-full object-cover" />
+                <img src="/brand/agensea-favicon.png" alt="Agensea" width="28" height="28" class="h-7 w-7 rounded-full object-cover" loading="lazy" decoding="async" />
                 <span class="font-semibold text-[14px]">Via Agensea</span>
               </div>
               <ul class="mt-4 space-y-1.5 text-[13.5px] text-canvas/80">
@@ -250,7 +250,7 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
           return (
             <article class="card overflow-hidden group" data-reveal style={`transition-delay: ${i * 40}ms`}>
               <div class={`aspect-[4/3] relative ${a.bg} overflow-hidden flex items-center justify-center p-10`}>
-                <img src={p.logo} alt={p.name} class="max-h-20 md:max-h-24 w-auto max-w-[80%] object-contain group-hover:scale-105 transition-transform duration-700" />
+                <img src={p.logo} alt={p.name} width="280" height="140" class="max-h-20 md:max-h-24 w-auto max-w-[80%] object-contain group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                 <span class="chip bg-white/90 text-ink absolute top-4 left-4 border border-line">{p.sector}</span>
               </div>
               <div class="p-5 sm:p-6">
@@ -297,7 +297,7 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
             </blockquote>
             <figcaption class="mt-6 flex items-center gap-3 text-[14px]">
               {t.photo ? (
-                <img src={t.photo} alt={t.name} class="h-12 w-12 rounded-full object-cover border-2 border-mint" />
+                <img src={t.photo} alt={t.name} width="48" height="48" class="h-12 w-12 rounded-full object-cover border-2 border-mint" loading="lazy" decoding="async" />
               ) : (
                 <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-ink text-mint font-bold text-[14px]">{t.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</span>
               )}

@@ -101,7 +101,7 @@ export const testimonials = [
     role: "Tekstschrijver",
     quote:
       "Ik heb de eer gehad om met Jorik samen te werken. Hij is echt een ondernemer in hart en nieren. Praktisch, snel, en hij ziet kansen voordat een ander ze ziet.",
-    photo: "/people/wahine.png",
+    photo: "/people/wahine.webp",
   },
 ] as const;
 
