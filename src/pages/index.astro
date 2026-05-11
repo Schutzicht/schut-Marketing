@@ -1,0 +1,371 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
+import Brand from "../components/Brand.astro";
+import { site, services, projects, testimonials, principles, stats } from "../data/site";
+
+const featuredProjects = projects.filter((p) => p.slug !== "agensea").slice(0, 6);
+const heroClients = projects.filter((p) => p.logo).slice(0, 4);
+
+const accentMap: Record<string, { bg: string; chip: string; iconBg: string; iconText: string; ring: string }> = {
+  mint:   { bg: "bg-mint-fog",   chip: "bg-mint text-ink",            iconBg: "bg-mint",       iconText: "text-ink",    ring: "ring-mint/40" },
+  cyan:   { bg: "bg-cyan-soft",  chip: "bg-cyan text-ink",            iconBg: "bg-cyan",       iconText: "text-ink",    ring: "ring-cyan/40" },
+  peach:  { bg: "bg-peach-soft", chip: "bg-peach text-ink",           iconBg: "bg-peach",      iconText: "text-ink",    ring: "ring-peach/40" },
+  lilac:  { bg: "bg-lilac-soft", chip: "bg-lilac text-ink",           iconBg: "bg-lilac",      iconText: "text-ink",    ring: "ring-lilac/40" },
+};
+---
+
+<Base>
+  <!-- ============= HERO ============= -->
+  <section class="relative pt-28 md:pt-40 pb-16 md:pb-28 overflow-hidden">
+    <span aria-hidden="true" class="absolute -top-32 -right-32 w-[520px] h-[520px] rounded-full bg-mint/25 blur-[120px] pointer-events-none"></span>
+    <span aria-hidden="true" class="absolute top-1/3 -left-40 w-[420px] h-[420px] rounded-full bg-cyan/20 blur-[120px] pointer-events-none"></span>
+    <span aria-hidden="true" class="absolute bottom-0 right-1/4 w-[320px] h-[320px] rounded-full bg-peach/35 blur-[120px] pointer-events-none"></span>
+
+    <div class="container-sm relative">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <!-- LEFT: copy -->
+        <div class="lg:col-span-7" data-reveal>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-line text-[11px] uppercase tracking-[0.18em] text-ink-soft shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-mint live-dot"></span>
+            Beschikbaar voor nieuwe projecten
+          </div>
+
+          <h1 class="mt-6 text-[34px] xs:text-[40px] sm:text-[56px] md:text-[72px] lg:text-[80px] xl:text-[92px] font-extrabold leading-[1.02] sm:leading-[1] tracking-[-0.03em] sm:tracking-[-0.04em]">
+            Websites en marketing<br class="hidden sm:inline"/>
+            <span class="sm:hidden"> </span>die voor je <span class="italic-serif text-mint-deep squiggle">werken</span>.
+          </h1>
+
+          <p class="mt-7 max-w-xl text-[16px] sm:text-[17px] md:text-[18px] leading-[1.6] text-ink-soft">
+            {site.intro}
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-3">
+            <a href="/contact" class="btn-primary">Plan een kennismaking <Icon name="arrow" size={16} /></a>
+            <a href="/werk" class="link-arrow">Bekijk werk <Icon name="arrow" size={14} /></a>
+          </div>
+
+          <!-- mini trust strip -->
+          <div class="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <div class="flex items-center gap-2.5">
+              <img src="/brand/google-ads-display-certified.svg" alt="Google Ads Certified" class="h-9 w-auto" />
+              <div class="text-[12px] leading-tight">
+                <p class="font-semibold">Google Ads</p>
+                <p class="text-ink-soft">Display Certified</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <img src="/brand/bronze-partner.svg" alt="Google Bronze Partner" class="h-9 w-auto" />
+              <div class="text-[12px] leading-tight">
+                <p class="font-semibold">Bronze Partner</p>
+                <p class="text-ink-soft">Google Partners</p>
+              </div>
+            </div>
+            <div class="hidden sm:flex items-center gap-2.5">
+              <img src="/brand/agensea-favicon.png" alt="Agensea" class="h-9 w-9 rounded-full object-cover" />
+              <div class="text-[12px] leading-tight">
+                <p class="font-semibold">Partner Agensea</p>
+                <p class="text-ink-soft">sinds {site.partnerSince}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: visual -->
+        <div class="lg:col-span-5 relative" data-reveal>
+          <div class="relative aspect-square max-w-[460px] mx-auto">
+            <!-- main portrait card -->
+            <div class="absolute inset-0 rounded-jumbo overflow-hidden bg-canvas-2 border border-line shadow-[0_30px_80px_-30px_rgba(11,27,35,0.3)]">
+              <img src="/people/jorik.webp" alt="Jorik Schut, eigenaar Schut Marketing" class="w-full h-full object-cover" />
+              <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent text-canvas">
+                <p class="text-[11px] uppercase tracking-[0.2em] text-canvas/70">Hoi, ik ben</p>
+                <p class="text-xl font-semibold">Jorik Schut</p>
+              </div>
+            </div>
+
+            <!-- floating "reachable" card -->
+            <div class="hidden sm:flex absolute sm:-left-6 top-8 card-flat p-3.5 items-center gap-3 shadow-[0_18px_40px_-18px_rgba(11,27,35,0.25)] float-slow w-[220px]">
+              <span class="inline-flex h-9 w-9 rounded-full bg-mint items-center justify-center text-ink">
+                <Icon name="check" size={16} />
+              </span>
+              <div>
+                <p class="text-[11px] uppercase tracking-[0.15em] text-ink-soft">Reactie</p>
+                <p class="text-[14px] font-semibold leading-tight mt-0.5">binnen <span class="text-mint-deep">één werkdag</span></p>
+              </div>
+            </div>
+
+            <!-- floating "client logo" card -->
+            <div class="hidden sm:flex absolute sm:-right-6 bottom-12 card-flat px-4 py-3 items-center gap-3 shadow-[0_18px_40px_-18px_rgba(11,27,35,0.25)] float-medium">
+              <img src="/clients/dockwize.png" alt="Dockwize" class="h-8 w-auto opacity-95" />
+              <div class="border-l border-line pl-3 text-[11px] leading-tight">
+                <p class="text-ink-soft">Vaste klant</p>
+                <p class="font-semibold">sinds 2022</p>
+              </div>
+            </div>
+
+            <!-- accent blob behind portrait -->
+            <span aria-hidden="true" class="absolute -inset-6 -z-10 rounded-jumbo bg-gradient-to-br from-mint/30 via-cyan/15 to-peach/20 blur-2xl"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= CLIENT LOGOS MARQUEE ============= -->
+  <section class="py-10 md:py-14 border-y border-line bg-white">
+    <div class="container-sm">
+      <div class="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <p class="eyebrow shrink-0 !text-ink-soft">Gewerkt voor</p>
+        <div class="overflow-hidden flex-1 mask-fade-x">
+          <div class="marquee-track gap-14 md:gap-20 items-center">
+            {[...projects, ...projects].filter((p) => p.logo).map((p) => (
+              <img src={p.logo!} alt={p.name} class="h-10 md:h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= DIENSTEN ============= -->
+  <section id="diensten" class="py-20 md:py-28 relative overflow-hidden">
+    <span aria-hidden="true" class="absolute top-20 right-0 w-[400px] h-[400px] glow-mint pointer-events-none"></span>
+
+    <div class="container-sm relative">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-14" data-reveal>
+        <div class="max-w-2xl">
+          <p class="eyebrow">Waar ik je mee kan helpen</p>
+          <h2 class="text-[34px] sm:text-[48px] md:text-[60px] lg:text-[68px] font-extrabold leading-[1.02] mt-4 tracking-[-0.03em]">
+            Vier diensten,<br class="hidden sm:inline"/>
+            <span class="sm:hidden"> </span><span class="italic-serif text-mint-deep">grondig geleverd.</span>
+          </h2>
+        </div>
+        <p class="max-w-md text-[15px] leading-relaxed text-ink-soft">
+          Niet alles wat marketing heet doe ik, wel deze vier dingen. Vaak in combinatie, altijd met aandacht.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5">
+        {services.map((s, i) => {
+          const a = accentMap[s.accent];
+          return (
+            <article class={`relative overflow-hidden rounded-card border border-line p-5 sm:p-7 md:p-9 ${a.bg} hover:border-ink transition-all duration-500 group`} data-reveal style={`transition-delay: ${i * 60}ms`}>
+              {"badge" in s && s.badge && (
+                <span class="chip bg-ink text-mint absolute top-4 right-4 sm:top-5 sm:right-5">{s.badge}</span>
+              )}
+              <span class={`inline-flex h-12 w-12 items-center justify-center rounded-full ${a.iconBg} ${a.iconText} ring-8 ${a.ring}`}>
+                <Icon name={s.icon} size={20} />
+              </span>
+              <h3 class="mt-5 sm:mt-6 text-[24px] sm:text-[28px] md:text-[32px] font-bold leading-tight tracking-tight">{s.title}</h3>
+              <p class="mt-3 text-[14.5px] sm:text-[15px] leading-relaxed text-ink-soft">{s.summary}</p>
+              <p class="mt-3 text-[13.5px] sm:text-[14px] leading-relaxed text-ink/70">{s.detail}</p>
+              <ul class="mt-5 flex flex-wrap gap-2">
+                {s.points.map((p) => (
+                  <li class="chip bg-white/80 text-ink border border-line">{p}</li>
+                ))}
+              </ul>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= AGENSEA BRIDGE ============= -->
+  <section class="py-20 md:py-28 bg-ink text-canvas relative overflow-hidden">
+    <span aria-hidden="true" class="blob-mint -top-32 right-1/4 w-[600px] h-[600px]"></span>
+    <span aria-hidden="true" class="absolute -bottom-32 -left-32 w-[460px] h-[460px] rounded-full bg-cyan-deep/25 blur-[140px] pointer-events-none"></span>
+
+    <div class="container-sm relative">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div class="lg:col-span-6" data-reveal>
+          <div class="rounded-jumbo overflow-hidden border border-canvas/15 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] relative">
+            <img src="/people/team-agensea.webp" alt="Team Agensea" class="w-full h-auto block" />
+            <div class="absolute top-4 left-4 chip bg-mint text-ink">
+              <span>Team Agensea</span>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-6" data-reveal>
+          <p class="eyebrow !text-mint">Twee petten, één gezicht</p>
+          <h2 class="mt-4 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.04] sm:leading-[1] tracking-[-0.03em]">
+            Schut Marketing <span class="text-canvas/40 sm:hidden">of</span><br class="hidden sm:inline"/>
+            <span class="text-canvas/40 hidden sm:inline">of</span> <span class="italic-serif text-mint">Agensea</span>?
+          </h2>
+          <p class="mt-6 text-[16px] md:text-[17px] leading-[1.7] text-canvas/75 max-w-xl">
+            {site.agenseaIntro}
+          </p>
+
+          <div class="mt-8 grid sm:grid-cols-2 gap-4">
+            <div class="rounded-card border border-canvas/15 bg-canvas/5 p-5">
+              <div class="flex items-center gap-3">
+                <Brand variant="mint" size={28} />
+                <span class="font-semibold text-[14px]">Schut Marketing</span>
+              </div>
+              <ul class="mt-4 space-y-1.5 text-[13.5px] text-canvas/80">
+                <li class="flex items-center gap-2"><Icon name="check" size={14} class="text-mint" /> Eén aanspreekpunt</li>
+                <li class="flex items-center gap-2"><Icon name="check" size={14} class="text-mint" /> MKB en zzp</li>
+                <li class="flex items-center gap-2"><Icon name="check" size={14} class="text-mint" /> Korte lijnen</li>
+              </ul>
+            </div>
+            <div class="rounded-card border border-mint/40 bg-mint/10 p-5">
+              <div class="flex items-center gap-3">
+                <img src="/brand/agensea-favicon.png" alt="Agensea" class="h-7 w-7 rounded-full object-cover" />
+                <span class="font-semibold text-[14px]">Via Agensea</span>
+              </div>
+              <ul class="mt-4 space-y-1.5 text-[13.5px] text-canvas/80">
+                <li class="flex items-center gap-2"><Icon name="check" size={14} class="text-mint" /> Team met designers en devs</li>
+                <li class="flex items-center gap-2"><Icon name="check" size={14} class="text-mint" /> AI en software op maat</li>
+                <li class="flex items-center gap-2"><Icon name="check" size={14} class="text-mint" /> Grotere trajecten</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/over" class="btn-primary">Lees het hele verhaal <Icon name="arrow" size={16} /></a>
+            <a href={site.socials.agensea} target="_blank" rel="noopener" class="btn-ghost !border-canvas/40 !text-canvas hover:!bg-canvas hover:!text-ink">agensea.nl <Icon name="arrow-up-right" size={16} /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= WERK ============= -->
+  <section class="py-20 md:py-28">
+    <div class="container-sm">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-14" data-reveal>
+        <div class="max-w-2xl">
+          <p class="eyebrow">Selectie van het werk</p>
+          <h2 class="text-[34px] sm:text-[48px] md:text-[60px] lg:text-[68px] font-extrabold leading-[1.02] mt-4 tracking-[-0.03em]">
+            Klanten die <span class="italic-serif text-mint-deep">terugkomen</span>.
+          </h2>
+        </div>
+        <a href="/werk" class="link-arrow">Alle projecten <Icon name="arrow" size={14} /></a>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {featuredProjects.map((p, i) => {
+          const a = accentMap[p.bg];
+          return (
+            <article class="card overflow-hidden group" data-reveal style={`transition-delay: ${i * 40}ms`}>
+              <div class={`aspect-[4/3] relative ${a.bg} overflow-hidden flex items-center justify-center p-10`}>
+                {p.logo ? (
+                  <img src={p.logo} alt={p.name} class="max-h-20 md:max-h-24 w-auto max-w-[80%] object-contain group-hover:scale-105 transition-transform duration-700" />
+                ) : (
+                  <span class="text-[36px] font-bold tracking-tight text-ink">{p.name}</span>
+                )}
+                <span class="chip bg-white/90 text-ink absolute top-4 left-4 border border-line">{p.sector}</span>
+                <span class="chip bg-white/90 text-ink absolute top-4 right-4 border border-line">{p.year}</span>
+              </div>
+              <div class="p-6">
+                <p class="eyebrow !text-mint-deep">{p.role}</p>
+                <p class="mt-2 font-semibold text-[18px] tracking-tight">{p.name}</p>
+                <p class="mt-2 text-[14.5px] leading-relaxed text-ink-soft">{p.description}</p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= STATS ============= -->
+  <section class="py-12 md:py-16 bg-canvas-2 border-y border-line">
+    <div class="container-sm">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6 divide-x divide-line/0 md:divide-line">
+        {stats.map((s, i) => (
+          <div class={`text-center md:text-left md:px-6 ${i === 0 ? '' : ''}`} data-reveal style={`transition-delay: ${i * 50}ms`}>
+            <p class="text-[40px] md:text-[56px] font-extrabold tracking-tight leading-none">{s.value}</p>
+            <p class="mt-2 text-[13px] uppercase tracking-[0.15em] text-ink-soft">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TESTIMONIALS ============= -->
+  <section class="py-20 md:py-28 relative overflow-hidden">
+    <span aria-hidden="true" class="absolute top-20 left-1/3 w-[420px] h-[420px] glow-cyan pointer-events-none"></span>
+    <div class="container-sm relative">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <p class="eyebrow">Ervaringen van anderen</p>
+        <h2 class="mt-4 text-[32px] sm:text-[44px] md:text-[52px] lg:text-[60px] font-extrabold leading-[1.04] sm:leading-[1] tracking-[-0.03em]">
+          Geen gepolijste quotes.<br class="hidden sm:inline"/>
+          <span class="sm:hidden"> </span><span class="italic-serif text-mint-deep">Echte woorden.</span>
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5">
+        {testimonials.map((t, i) => (
+          <figure class="card p-5 sm:p-7 md:p-9" data-reveal style={`transition-delay: ${i * 60}ms`}>
+            <span class="text-mint-deep inline-flex"><Icon name="quote" size={28} /></span>
+            <blockquote class="text-[18px] sm:text-[20px] md:text-[24px] font-semibold leading-[1.4] sm:leading-[1.35] mt-4 tracking-tight">
+              {t.quote}
+            </blockquote>
+            <figcaption class="mt-6 flex items-center gap-3 text-[14px]">
+              {t.photo ? (
+                <img src={t.photo} alt={t.name} class="h-12 w-12 rounded-full object-cover border-2 border-mint" />
+              ) : (
+                <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-ink text-mint font-bold text-[14px]">{t.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</span>
+              )}
+              <span>
+                <span class="block font-semibold">{t.name}</span>
+                <span class="block text-[12px] text-ink-soft">{t.role}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= PRINCIPLES ============= -->
+  <section class="py-20 md:py-28 bg-canvas-2 border-t border-line">
+    <div class="container-sm">
+      <div class="max-w-2xl mb-12 md:mb-14" data-reveal>
+        <p class="eyebrow">Hoe ik werk</p>
+        <h2 class="mt-4 text-[30px] sm:text-[42px] md:text-[52px] lg:text-[60px] font-extrabold leading-[1.04] sm:leading-[1] tracking-[-0.03em]">
+          Vier uitgangspunten die<br class="hidden sm:inline"/>
+          <span class="sm:hidden"> </span><span class="italic-serif text-mint-deep">niet onderhandelbaar</span> zijn.
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-x-10 gap-y-10 md:gap-y-14">
+        {principles.map((p, i) => (
+          <div class="relative pl-14" data-reveal style={`transition-delay: ${i * 60}ms`}>
+            <span class="absolute left-0 top-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-mint text-ink font-bold text-[14px]">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="text-[24px] md:text-[28px] font-bold leading-tight tracking-tight">{p.title}</h3>
+            <p class="mt-3 text-[15px] leading-relaxed text-ink-soft max-w-md">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= FAQ ============= -->
+  <section class="py-20 md:py-28">
+    <div class="container-sm-narrow">
+      <div class="mb-12 md:mb-14" data-reveal>
+        <p class="eyebrow">Vaak gevraagd</p>
+        <h2 class="mt-4 text-[30px] sm:text-[42px] md:text-[52px] lg:text-[60px] font-extrabold leading-[1.04] sm:leading-[1] tracking-[-0.03em]">
+          Antwoorden op <span class="italic-serif text-mint-deep">de meest gestelde</span> vragen.
+        </h2>
+      </div>
+      <div class="divide-y divide-line border-y border-line">
+        {[
+          {q: "Werk je nu als Schut Marketing of als Agensea?", a: "Allebei. Schut Marketing is mijn eenmanszaak en draait gewoon door voor opdrachten waarbij persoonlijk contact en korte lijnen het belangrijkste zijn. Voor grotere of complexere trajecten werk ik via Agensea, waar ik sinds 2025 partner ben."},
+          {q: "Hoe weet ik welke route bij mij past?", a: "Daar denk ik gewoon met je in mee. In een gratis kennismaking kijken we wat je wilt bereiken en wat het project vraagt. Soms is dat één persoon, soms een team. Beide kan ik regelen."},
+          {q: "Werk je alleen in Zeeland?", a: "Nee. Ik woon en werk in Vlissingen, maar veel klanten zitten verspreid door Nederland. Online schakelen werkt prima en voor een goede kop koffie kom ik graag langs."},
+          {q: "Krijg ik vaste tarieven of werk je op uurbasis?", a: "Per project. Voor websites en campagnes krijg je een vaste prijs vooraf. Voor doorlopende ondersteuning werken we met een afgesproken maandbedrag. Geen verrassingen achteraf."},
+          {q: "Wat als ik snel iets nodig heb?", a: "Bel of mail gewoon. Ik reageer meestal binnen een werkdag. Spoed kan vaak, maar ik kijk eerlijk of het past zonder dat de kwaliteit eronder lijdt."},
+        ].map((item) => (
+          <details class="group py-5">
+            <summary class="cursor-pointer flex items-start justify-between gap-4 text-[18px] sm:text-[20px] font-semibold leading-tight tracking-tight">
+              <span>{item.q}</span>
+              <span class="shrink-0 mt-0.5 text-ink-soft group-open:rotate-45 transition-transform duration-300"><Icon name="spark" size={18} /></span>
+            </summary>
+            <p class="mt-3 text-[15px] leading-relaxed text-ink-soft max-w-2xl">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

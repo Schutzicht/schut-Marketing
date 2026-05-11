@@ -1,0 +1,130 @@
+---
+import Icon from "./Icon.astro";
+import Brand from "./Brand.astro";
+import { nav } from "../data/site";
+
+const pathname = Astro.url.pathname;
+---
+
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-500" data-header>
+  <div class="container-sm">
+    <div
+      class="mt-3 md:mt-5 flex items-center justify-between gap-4 px-4 md:px-5 py-2.5 md:py-3 rounded-full bg-white/85 backdrop-blur-md border border-line shadow-[0_8px_30px_-12px_rgba(11,27,35,0.1)]"
+      data-header-inner
+    >
+      <a href="/" class="flex items-center gap-2.5 group" aria-label="Schut Marketing home">
+        <Brand variant="mint" size={32} />
+        <span class="hidden sm:flex flex-col leading-tight pl-1">
+          <span class="font-semibold text-[14px] text-ink tracking-tight">schut marketing</span>
+          <span class="text-[10px] uppercase tracking-[0.18em] text-ink-soft">door Jorik Schut</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1">
+        {nav.map((item) => {
+          const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href.replace(/#.*/, ""));
+          return (
+            <a
+              href={item.href}
+              class={`text-sm font-semibold tracking-tight px-3.5 py-2 rounded-full transition-colors ${isActive ? "bg-mint-fog text-mint-deep" : "text-ink hover:bg-canvas-2"}`}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="/contact" class="hidden md:inline-flex btn-primary !py-2.5 !px-4 !text-[13px]">
+          Plan kennismaking <Icon name="arrow" size={15} />
+        </a>
+        <button
+          class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-canvas-2 hover:bg-ink hover:text-canvas text-ink transition-colors"
+          aria-label="Open menu"
+          data-menu-toggle
+        >
+          <Icon name="menu" size={20} />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="mobile-menu fixed inset-0 z-[60] bg-ink text-canvas transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden"
+    data-mobile-menu
+  >
+    <div class="container-sm h-full flex flex-col">
+      <div class="flex items-center justify-between py-5">
+        <a href="/" class="flex items-center gap-2.5">
+          <Brand variant="mint" size={32} />
+          <span class="font-semibold text-[14px] tracking-tight">schut marketing</span>
+        </a>
+        <button class="w-10 h-10 rounded-full border border-canvas/25 inline-flex items-center justify-center" aria-label="Sluit menu" data-menu-close>
+          <Icon name="close" size={20} />
+        </button>
+      </div>
+      <nav class="flex-1 flex flex-col justify-center gap-1">
+        {nav.map((item) => (
+          <a
+            href={item.href}
+            class="font-bold text-[36px] sm:text-[44px] tracking-tight hover:text-mint transition-colors py-1.5"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+      <div class="py-8 border-t border-canvas/15 flex flex-col gap-3 text-sm">
+        <a href="tel:+31657946199" class="flex items-center gap-2"><Icon name="phone" size={16} /> 06 57 94 61 99</a>
+        <a href="mailto:jorik@schutmarketing.nl" class="flex items-center gap-2"><Icon name="mail" size={16} /> jorik@schutmarketing.nl</a>
+        <span class="flex items-center gap-2 text-canvas/65"><Icon name="pin" size={16} /> Vlissingen, Zeeland</span>
+        <a href="/contact" class="btn-primary mt-2 justify-center">Plan kennismaking <Icon name="arrow" size={16} /></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const inner = document.querySelector<HTMLElement>("[data-header-inner]");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const close = document.querySelector<HTMLButtonElement>("[data-menu-close]");
+  const menu = document.querySelector<HTMLElement>("[data-mobile-menu]");
+
+  const onScroll = () => {
+    if (!inner) return;
+    const y = window.scrollY;
+    if (y > 30) {
+      inner.classList.add("!bg-white", "shadow-[0_18px_40px_-20px_rgba(11,27,35,0.18)]");
+    } else {
+      inner.classList.remove("!bg-white", "shadow-[0_18px_40px_-20px_rgba(11,27,35,0.18)]");
+    }
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  const openMenu = () => {
+    if (!menu) return;
+    menu.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  };
+  const closeMenu = () => {
+    if (!menu) return;
+    menu.classList.remove("is-open");
+    document.body.style.overflow = "";
+  };
+  toggle?.addEventListener("click", openMenu);
+  close?.addEventListener("click", closeMenu);
+  menu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
+</script>
+
+<style>
+  .mobile-menu {
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  .mobile-menu.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+</style>

@@ -1,0 +1,75 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
+import { projects } from "../data/site";
+
+const accentMap: Record<string, string> = {
+  mint: "bg-mint-fog",
+  cyan: "bg-cyan-soft",
+  peach: "bg-peach-soft",
+  lilac: "bg-lilac-soft",
+};
+---
+
+<Base title="Werk | Schut Marketing" description="Klanten en projecten waar Schut Marketing aan werkt of werkte. Van Dockwize en Innovatiepunt KAAP tot Buurtteams Vlissingen en Fractal Energy.">
+  <section class="pt-28 md:pt-40 pb-12 md:pb-16 relative overflow-hidden">
+    <span aria-hidden="true" class="absolute top-32 -right-20 w-[420px] h-[420px] rounded-full bg-mint/20 blur-[120px] pointer-events-none"></span>
+    <div class="container-sm relative">
+      <div class="grid lg:grid-cols-12 gap-8 items-end" data-reveal>
+        <div class="lg:col-span-8">
+          <p class="eyebrow">Werk</p>
+          <h1 class="mt-4 text-[36px] sm:text-[56px] md:text-[76px] lg:text-[96px] font-extrabold leading-[1.02] sm:leading-[0.94] tracking-[-0.03em] sm:tracking-[-0.04em]">
+            Een greep uit<br class="hidden sm:inline"/>
+            <span class="sm:hidden"> </span>het werk van de <span class="italic-serif text-mint-deep">laatste jaren</span>.
+          </h1>
+        </div>
+        <div class="lg:col-span-4">
+          <p class="text-[15px] leading-relaxed text-ink-soft max-w-md">
+            Van eenmanszaken tot stichtingen en bureau-partners. Soms voor een eenmalige sprint, vaker voor de lange termijn. Hieronder een selectie.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-24 md:pb-32">
+    <div class="container-sm">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {projects.map((p, i) => (
+          <article class="card overflow-hidden group" data-reveal style={`transition-delay: ${i * 35}ms`}>
+            <div class={`aspect-[4/3] relative ${accentMap[p.bg]} overflow-hidden flex items-center justify-center p-10`}>
+              {p.logo ? (
+                <img src={p.logo} alt={p.name} class="max-h-20 md:max-h-24 w-auto max-w-[80%] object-contain group-hover:scale-105 transition-transform duration-700" />
+              ) : (
+                <span class="text-[32px] font-bold tracking-tight text-ink text-center">{p.name}</span>
+              )}
+              <span class="chip bg-white/90 text-ink absolute top-4 left-4 border border-line">{p.sector}</span>
+              <span class="chip bg-white/90 text-ink absolute top-4 right-4 border border-line">{p.year}</span>
+            </div>
+            <div class="p-6">
+              <p class="eyebrow !text-mint-deep">{p.role}</p>
+              <p class="mt-2 font-semibold text-[18px] tracking-tight">{p.name}</p>
+              <p class="mt-2 text-[14.5px] leading-relaxed text-ink-soft">{p.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-canvas-2 border-y border-line">
+    <div class="container-sm-narrow text-center" data-reveal>
+      <p class="eyebrow">Geheimhouding</p>
+      <h2 class="mt-4 text-[28px] sm:text-[38px] md:text-[46px] lg:text-[52px] font-extrabold leading-[1.08] sm:leading-[1.05] tracking-[-0.03em]">
+        Niet elk project staat<br class="hidden sm:inline"/>
+        <span class="sm:hidden"> </span>op deze <span class="italic-serif text-mint-deep">pagina</span>.
+      </h2>
+      <p class="mt-5 max-w-xl mx-auto text-[15px] leading-relaxed text-ink-soft">
+        Een deel van het werk is vertrouwelijk of valt onder een ander label. Vraag gerust in een kennismaking naar voorbeelden die bij jouw situatie passen.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3 justify-center">
+        <a href="/contact" class="btn-primary">Plan kennismaking <Icon name="arrow" size={16} /></a>
+      </div>
+    </div>
+  </section>
+</Base>

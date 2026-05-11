@@ -1,0 +1,68 @@
+---
+import Icon from "./Icon.astro";
+import Brand from "./Brand.astro";
+import { site } from "../data/site";
+---
+
+<footer class="bg-ink text-canvas relative overflow-hidden">
+  <span aria-hidden="true" class="blob-mint -top-32 -right-32 w-[520px] h-[520px]"></span>
+  <span aria-hidden="true" class="absolute -bottom-40 -left-20 w-[420px] h-[420px] rounded-full bg-cyan-deep/20 blur-[140px] pointer-events-none"></span>
+
+  <div class="container-sm relative">
+    <div class="pt-20 md:pt-28 pb-12">
+      <div class="grid lg:grid-cols-12 gap-10 pb-14 border-b border-canvas/15">
+        <div class="lg:col-span-6">
+          <p class="eyebrow !text-mint">Laat horen</p>
+          <h2 class="text-[34px] sm:text-[48px] md:text-[58px] lg:text-[64px] font-bold leading-[1.02] sm:leading-[0.98] mt-3 tracking-tight">
+            Klaar om te <em class="italic-serif text-mint">groeien?</em>
+          </h2>
+          <p class="mt-5 max-w-md text-canvas/70 text-[15px] leading-relaxed">
+            Een eerste gesprek is vrijblijvend. We koffieën, kijken samen wat je wilt bereiken, en bekijken of het past.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/contact" class="btn-primary">Plan kennismaking <Icon name="arrow" size={16} /></a>
+            <a href={site.phoneHref} class="btn-ghost !border-canvas/40 !text-canvas hover:!bg-canvas hover:!text-ink"><Icon name="phone" size={16} /> {site.phone}</a>
+          </div>
+        </div>
+        <div class="lg:col-span-6 grid sm:grid-cols-3 gap-8 lg:gap-6">
+          <div>
+            <p class="eyebrow !text-canvas/55 mb-4">Direct</p>
+            <ul class="space-y-2 text-[14px]">
+              <li><a href={site.phoneHref} class="hover:text-mint transition-colors">{site.phone}</a></li>
+              <li><a href={`mailto:${site.email}`} class="hover:text-mint transition-colors break-all">{site.email}</a></li>
+              <li class="text-canvas/65 flex items-center gap-2"><Icon name="pin" size={14} /> {site.city}</li>
+            </ul>
+          </div>
+          <div>
+            <p class="eyebrow !text-canvas/55 mb-4">Volgen</p>
+            <ul class="space-y-2 text-[14px]">
+              <li><a href={site.socials.linkedin} target="_blank" rel="noopener" class="hover:text-mint transition-colors inline-flex items-center gap-2"><Icon name="linkedin" size={14} /> LinkedIn</a></li>
+              <li><a href={site.socials.agensea} target="_blank" rel="noopener" class="hover:text-mint transition-colors inline-flex items-center gap-2"><Icon name="arrow-up-right" size={14} /> agensea.nl</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="eyebrow !text-canvas/55 mb-4">Pagina's</p>
+            <ul class="space-y-2 text-[14px]">
+              <li><a href="/" class="hover:text-mint transition-colors">Home</a></li>
+              <li><a href="/werk" class="hover:text-mint transition-colors">Werk</a></li>
+              <li><a href="/over" class="hover:text-mint transition-colors">Over Jorik</a></li>
+              <li><a href="/contact" class="hover:text-mint transition-colors">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 text-[12px] text-canvas/55">
+        <div class="flex items-center gap-3">
+          <Brand variant="mint" size={28} />
+          <span>Schut Marketing &middot; eenmanszaak van Jorik Schut</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <span>&copy; {new Date().getFullYear()}</span>
+          <span class="opacity-40">/</span>
+          <span>Partner bij <a href={site.socials.agensea} target="_blank" rel="noopener" class="underline-offset-2 hover:underline text-canvas">Agensea</a> sinds {site.partnerSince}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
