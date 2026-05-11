@@ -258,14 +258,10 @@
   50% { transform: translateY(-12px); }
 }
 
+/* Reveal-animatie uitgezet: betrouwbaarder op mobiel, geen IO-race */
 [data-reveal] {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.9s var(--ease-out-quart), transform 0.9s var(--ease-out-quart);
-}
-[data-reveal].is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .live-dot {
