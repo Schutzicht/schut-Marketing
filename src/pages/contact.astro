@@ -2,9 +2,36 @@
 import Base from "../layouts/Base.astro";
 import Icon from "../components/Icon.astro";
 import { site } from "../data/site";
+
+const channels = [
+  {
+    label: "WhatsApp",
+    sub: "Snelst voor korte vragen",
+    value: site.phone,
+    icon: "phone",
+    href: site.whatsappHref,
+    bg: "bg-mint",
+  },
+  {
+    label: "Bellen",
+    sub: "Werkdagen 09:00 - 17:30",
+    value: site.phone,
+    icon: "phone",
+    href: site.phoneHref,
+    bg: "bg-cyan",
+  },
+  {
+    label: "Mailen",
+    sub: "Reactie meestal binnen één werkdag",
+    value: site.email,
+    icon: "mail",
+    href: `mailto:${site.email}`,
+    bg: "bg-peach",
+  },
+] as const;
 ---
 
-<Base title="Contact | Schut Marketing" description="Plan een vrijblijvende kennismaking met Jorik Schut. Bel, mail of vul het contactformulier in.">
+<Base title="Contact | Schut Marketing" description="Direct in contact met Jorik Schut. App, bel of mail voor een vrijblijvende kennismaking.">
   <section class="pt-28 md:pt-40 pb-20 md:pb-28 relative overflow-hidden">
     <span aria-hidden="true" class="absolute top-32 -right-32 w-[460px] h-[460px] rounded-full bg-mint/20 blur-[120px] pointer-events-none"></span>
     <span aria-hidden="true" class="absolute bottom-0 -left-32 w-[360px] h-[360px] rounded-full bg-cyan/15 blur-[120px] pointer-events-none"></span>
@@ -16,146 +43,54 @@ import { site } from "../data/site";
           <h1 class="mt-4 text-[40px] sm:text-[56px] md:text-[72px] lg:text-[84px] font-extrabold leading-[1] sm:leading-[0.94] tracking-[-0.03em] sm:tracking-[-0.04em]">
             Even <span class="italic-serif text-mint-deep">kennismaken</span>.
           </h1>
-          <p class="mt-8 max-w-xl text-[16.5px] md:text-[17px] leading-[1.7] text-ink-soft">
+          <p class="mt-7 max-w-xl text-[16.5px] md:text-[17px] leading-[1.7] text-ink-soft">
             Een eerste gesprek is altijd vrijblijvend. We koffieën, kijken samen wat je wilt bereiken, en bekijken of het past. Geen druk, geen verkooppraatje.
           </p>
-
-          <div class="mt-10 space-y-4">
-            <a href={site.phoneHref} class="flex items-center gap-4 group">
-              <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-mint text-ink group-hover:bg-mint-deep transition-colors">
-                <Icon name="phone" size={18} />
-              </span>
-              <span>
-                <span class="block eyebrow !text-ink-soft">Bel direct</span>
-                <span class="block text-[24px] sm:text-[28px] font-bold leading-tight mt-1 tracking-tight group-hover:text-mint-deep transition-colors">{site.phone}</span>
-              </span>
-            </a>
-            <a href={`mailto:${site.email}`} class="flex items-center gap-4 group">
-              <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-mint text-ink group-hover:bg-mint-deep transition-colors">
-                <Icon name="mail" size={18} />
-              </span>
-              <span>
-                <span class="block eyebrow !text-ink-soft">Mail</span>
-                <span class="block text-[24px] sm:text-[28px] font-bold leading-tight mt-1 tracking-tight group-hover:text-mint-deep transition-colors break-all">{site.email}</span>
-              </span>
-            </a>
-            <div class="flex items-center gap-4">
-              <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-canvas-2 text-ink border border-line">
-                <Icon name="pin" size={18} />
-              </span>
-              <span>
-                <span class="block eyebrow !text-ink-soft">Locatie</span>
-                <span class="block text-[24px] sm:text-[28px] font-bold leading-tight mt-1 tracking-tight">{site.city}</span>
-              </span>
-            </div>
-          </div>
+          <p class="mt-4 max-w-xl text-[15px] md:text-[15.5px] leading-[1.7] text-ink-soft">
+            Het makkelijkst is een appje. Bellen kan ook, en als je liever schriftelijk start: mail mag altijd.
+          </p>
 
           <div class="hairline my-10"></div>
 
-          <div class="flex flex-wrap items-center gap-6 text-[13px] text-ink-soft">
-            <a href={site.socials.linkedin} target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-ink"><Icon name="linkedin" size={16} /> LinkedIn</a>
+          <div class="flex items-center gap-4">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-canvas-2 text-ink border border-line">
+              <Icon name="pin" size={18} />
+            </span>
+            <div>
+              <p class="eyebrow !text-ink-soft">Locatie</p>
+              <p class="mt-1 text-[18px] sm:text-[20px] font-bold tracking-tight">{site.city}</p>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] text-ink-soft">
+            <a href={site.socials.linkedin} target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-ink"><Icon name="linkedin" size={16} /> LinkedIn Jorik Schut</a>
             <a href={site.socials.agensea} target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:text-ink"><Icon name="arrow-up-right" size={16} /> agensea.nl</a>
           </div>
         </div>
 
-        <div class="lg:col-span-6" data-reveal>
-          <form
-            id="contact-form"
-            action={`https://formspree.io/f/${site.formspreeId}`}
-            method="POST"
-            class="card-flat p-5 sm:p-7 md:p-9 bg-white"
-          >
-            <p class="eyebrow">Stuur een bericht</p>
-            <h2 class="mt-3 text-[24px] sm:text-[30px] font-bold leading-tight tracking-tight">
-              Wat <span class="italic-serif text-mint-deep">speelt er</span>?
-            </h2>
-
-            <div class="mt-7 space-y-5" data-form-fields>
-              <div>
-                <label for="name" class="block text-[12px] uppercase tracking-[0.18em] text-ink-soft mb-2 font-semibold">Naam</label>
-                <input id="name" name="name" type="text" required class="w-full bg-canvas border border-line rounded-lg px-4 py-3 text-[15px] focus:outline-none focus:border-mint focus:ring-2 focus:ring-mint/20 transition-all" placeholder="Voor- en achternaam" />
-              </div>
-              <div>
-                <label for="email" class="block text-[12px] uppercase tracking-[0.18em] text-ink-soft mb-2 font-semibold">E-mail</label>
-                <input id="email" name="email" type="email" required class="w-full bg-canvas border border-line rounded-lg px-4 py-3 text-[15px] focus:outline-none focus:border-mint focus:ring-2 focus:ring-mint/20 transition-all" placeholder="jij@bedrijf.nl" />
-              </div>
-              <div>
-                <label for="company" class="block text-[12px] uppercase tracking-[0.18em] text-ink-soft mb-2 font-semibold">Bedrijf <span class="normal-case text-ink-mute font-normal">(optioneel)</span></label>
-                <input id="company" name="company" type="text" class="w-full bg-canvas border border-line rounded-lg px-4 py-3 text-[15px] focus:outline-none focus:border-mint focus:ring-2 focus:ring-mint/20 transition-all" />
-              </div>
-              <div>
-                <label for="message" class="block text-[12px] uppercase tracking-[0.18em] text-ink-soft mb-2 font-semibold">Bericht</label>
-                <textarea id="message" name="message" rows="5" required class="w-full bg-canvas border border-line rounded-lg px-4 py-3 text-[15px] focus:outline-none focus:border-mint focus:ring-2 focus:ring-mint/20 transition-all resize-none" placeholder="Vertel kort wat je zoekt of waar ik mee kan helpen."></textarea>
-              </div>
-
-              <input type="hidden" name="_subject" value="Nieuw bericht via schutmarketing.nl" />
-              <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-
-              <button type="submit" class="btn-primary w-full justify-center" data-submit>
-                <span data-submit-label>Verstuur</span> <Icon name="arrow" size={16} />
-              </button>
-              <p class="text-[12px] text-ink-mute leading-relaxed">
-                Liever appen of bellen? Dat kan ook via {site.phone}. Ik reageer meestal binnen een werkdag.
-              </p>
-            </div>
-
-            <!-- Success state -->
-            <div class="hidden text-center py-8" data-form-success>
-              <span class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-mint text-ink mb-4">
-                <Icon name="check" size={26} />
+        <div class="lg:col-span-6 space-y-4" data-reveal>
+          {channels.map((c, i) => (
+            <a
+              href={c.href}
+              target={c.href.startsWith("http") ? "_blank" : undefined}
+              rel={c.href.startsWith("http") ? "noopener" : undefined}
+              class="card flex items-center gap-5 p-5 sm:p-6 group"
+              style={`transition-delay: ${i * 50}ms`}
+              data-reveal
+            >
+              <span class={`inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ${c.bg} text-ink ring-8 ring-canvas-2 group-hover:ring-mint-fog transition-all`}>
+                <Icon name={c.icon} size={22} />
               </span>
-              <h3 class="text-[22px] font-bold tracking-tight">Bericht verstuurd</h3>
-              <p class="mt-2 text-[14.5px] leading-relaxed text-ink-soft max-w-sm mx-auto">
-                Dank je. Ik lees mee zodra het binnenkomt en reageer meestal binnen één werkdag.
-              </p>
-            </div>
-
-            <!-- Error state -->
-            <div class="hidden mt-4 rounded-lg border border-red-200 bg-red-50 p-4 text-[13.5px] text-red-700" data-form-error>
-              Er ging iets mis bij het versturen. Probeer opnieuw of mail rechtstreeks naar <a href={`mailto:${site.email}`} class="underline font-semibold">{site.email}</a>.
-            </div>
-          </form>
+              <div class="flex-1 min-w-0">
+                <p class="eyebrow !text-ink-soft">{c.label}</p>
+                <p class="mt-0.5 text-[20px] sm:text-[22px] font-bold tracking-tight break-all group-hover:text-mint-deep transition-colors">{c.value}</p>
+                <p class="mt-1 text-[13px] text-ink-soft">{c.sub}</p>
+              </div>
+              <Icon name="arrow-up-right" size={20} class="shrink-0 text-ink-soft group-hover:text-mint-deep transition-colors" />
+            </a>
+          ))}
         </div>
       </div>
     </div>
   </section>
-
-  <script>
-    const form = document.getElementById("contact-form") as HTMLFormElement | null;
-    if (form) {
-      const fields = form.querySelector<HTMLElement>("[data-form-fields]");
-      const successEl = form.querySelector<HTMLElement>("[data-form-success]");
-      const errorEl = form.querySelector<HTMLElement>("[data-form-error]");
-      const submitBtn = form.querySelector<HTMLButtonElement>("[data-submit]");
-      const submitLabel = form.querySelector<HTMLElement>("[data-submit-label]");
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        if (errorEl) errorEl.classList.add("hidden");
-        if (submitBtn) submitBtn.disabled = true;
-        if (submitLabel) submitLabel.textContent = "Versturen...";
-
-        try {
-          const data = new FormData(form);
-          const res = await fetch(form.action, {
-            method: "POST",
-            body: data,
-            headers: { Accept: "application/json" },
-          });
-
-          if (res.ok) {
-            fields?.classList.add("hidden");
-            successEl?.classList.remove("hidden");
-            form.reset();
-          } else {
-            throw new Error("Form submission failed");
-          }
-        } catch {
-          errorEl?.classList.remove("hidden");
-          if (submitBtn) submitBtn.disabled = false;
-          if (submitLabel) submitLabel.textContent = "Verstuur";
-        }
-      });
-    }
-  </script>
 </Base>

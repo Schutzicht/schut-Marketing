@@ -4,8 +4,7 @@ import Icon from "../components/Icon.astro";
 import Brand from "../components/Brand.astro";
 import { site, services, projects, testimonials, principles, stats } from "../data/site";
 
-const featuredProjects = projects.filter((p) => p.slug !== "agensea").slice(0, 6);
-const heroClients = projects.filter((p) => p.logo).slice(0, 4);
+const featuredProjects = projects.slice(0, 6);
 
 const accentMap: Record<string, { bg: string; chip: string; iconBg: string; iconText: string; ring: string }> = {
   mint:   { bg: "bg-mint-fog",   chip: "bg-mint text-ink",            iconBg: "bg-mint",       iconText: "text-ink",    ring: "ring-mint/40" },
@@ -94,14 +93,16 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
               </div>
             </div>
 
-            <!-- floating "client logo" card -->
-            <div class="hidden sm:flex absolute sm:-right-6 bottom-12 card-flat px-4 py-3 items-center gap-3 shadow-[0_18px_40px_-18px_rgba(11,27,35,0.25)] float-medium">
-              <img src="/clients/dockwize.png" alt="Dockwize" class="h-8 w-auto opacity-95" />
-              <div class="border-l border-line pl-3 text-[11px] leading-tight">
-                <p class="text-ink-soft">Vaste klant</p>
-                <p class="font-semibold">sinds 2022</p>
+            <!-- floating "direct" card -->
+            <a href={site.whatsappHref} target="_blank" rel="noopener" class="hidden sm:flex absolute sm:-right-6 bottom-12 card-flat px-4 py-3 items-center gap-3 shadow-[0_18px_40px_-18px_rgba(11,27,35,0.25)] float-medium hover:border-mint transition-all">
+              <span class="inline-flex h-9 w-9 rounded-full bg-mint items-center justify-center text-ink">
+                <Icon name="phone" size={15} />
+              </span>
+              <div class="text-[11px] leading-tight">
+                <p class="text-ink-soft">App of bel</p>
+                <p class="font-semibold">{site.phone}</p>
               </div>
-            </div>
+            </a>
 
             <!-- accent blob behind portrait -->
             <span aria-hidden="true" class="absolute -inset-6 -z-10 rounded-jumbo bg-gradient-to-br from-mint/30 via-cyan/15 to-peach/20 blur-2xl"></span>
@@ -199,7 +200,7 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
           <div class="mt-8 grid sm:grid-cols-2 gap-4">
             <div class="rounded-card border border-canvas/15 bg-canvas/5 p-5">
               <div class="flex items-center gap-3">
-                <Brand variant="mint" size={28} />
+                <Brand size={28} />
                 <span class="font-semibold text-[14px]">Schut Marketing</span>
               </div>
               <ul class="mt-4 space-y-1.5 text-[13.5px] text-canvas/80">
@@ -237,10 +238,10 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
         <div class="max-w-2xl">
           <p class="eyebrow">Selectie van het werk</p>
           <h2 class="text-[34px] sm:text-[48px] md:text-[60px] lg:text-[68px] font-extrabold leading-[1.02] mt-4 tracking-[-0.03em]">
-            Klanten die <span class="italic-serif text-mint-deep">terugkomen</span>.
+            Een greep uit het <span class="italic-serif text-mint-deep">werk</span>.
           </h2>
         </div>
-        <a href="/werk" class="link-arrow">Alle projecten <Icon name="arrow" size={14} /></a>
+        <a href="/werk" class="link-arrow">Alle klanten <Icon name="arrow" size={14} /></a>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -249,18 +250,11 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
           return (
             <article class="card overflow-hidden group" data-reveal style={`transition-delay: ${i * 40}ms`}>
               <div class={`aspect-[4/3] relative ${a.bg} overflow-hidden flex items-center justify-center p-10`}>
-                {p.logo ? (
-                  <img src={p.logo} alt={p.name} class="max-h-20 md:max-h-24 w-auto max-w-[80%] object-contain group-hover:scale-105 transition-transform duration-700" />
-                ) : (
-                  <span class="text-[36px] font-bold tracking-tight text-ink">{p.name}</span>
-                )}
+                <img src={p.logo} alt={p.name} class="max-h-20 md:max-h-24 w-auto max-w-[80%] object-contain group-hover:scale-105 transition-transform duration-700" />
                 <span class="chip bg-white/90 text-ink absolute top-4 left-4 border border-line">{p.sector}</span>
-                <span class="chip bg-white/90 text-ink absolute top-4 right-4 border border-line">{p.year}</span>
               </div>
-              <div class="p-6">
-                <p class="eyebrow !text-mint-deep">{p.role}</p>
-                <p class="mt-2 font-semibold text-[18px] tracking-tight">{p.name}</p>
-                <p class="mt-2 text-[14.5px] leading-relaxed text-ink-soft">{p.description}</p>
+              <div class="p-5 sm:p-6">
+                <p class="font-semibold text-[18px] tracking-tight">{p.name}</p>
               </div>
             </article>
           );
