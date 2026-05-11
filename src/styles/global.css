@@ -47,6 +47,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
   body {
     background-color: var(--color-canvas);
@@ -54,7 +55,6 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
     font-feature-settings: "ss01", "cv11";
   }
   ::selection {
