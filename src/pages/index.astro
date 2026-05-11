@@ -4,8 +4,6 @@ import Icon from "../components/Icon.astro";
 import Brand from "../components/Brand.astro";
 import { site, services, projects, testimonials, principles, stats } from "../data/site";
 
-const featuredProjects = projects.slice(0, 6);
-
 const accentMap: Record<string, { bg: string; chip: string; iconBg: string; iconText: string; ring: string }> = {
   mint:   { bg: "bg-mint-fog",   chip: "bg-mint text-ink",            iconBg: "bg-mint",       iconText: "text-ink",    ring: "ring-mint/40" },
   cyan:   { bg: "bg-cyan-soft",  chip: "bg-cyan text-ink",            iconBg: "bg-cyan",       iconText: "text-ink",    ring: "ring-cyan/40" },
@@ -41,7 +39,7 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
 
           <div class="mt-9 flex flex-wrap items-center gap-3">
             <a href="/contact" class="btn-primary">Plan een kennismaking <Icon name="arrow" size={16} /></a>
-            <a href="/werk" class="link-arrow">Bekijk werk <Icon name="arrow" size={14} /></a>
+            <a href="/#klanten" class="link-arrow">Bekijk klanten <Icon name="arrow" size={14} /></a>
           </div>
 
           <!-- mini trust strip -->
@@ -231,21 +229,23 @@ const accentMap: Record<string, { bg: string; chip: string; iconBg: string; icon
     </div>
   </section>
 
-  <!-- ============= WERK ============= -->
-  <section class="py-20 md:py-28">
+  <!-- ============= KLANTEN ============= -->
+  <section id="klanten" class="py-20 md:py-28 scroll-mt-24">
     <div class="container-sm">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-14" data-reveal>
         <div class="max-w-2xl">
-          <p class="eyebrow">Selectie van het werk</p>
+          <p class="eyebrow">Klanten</p>
           <h2 class="text-[34px] sm:text-[48px] md:text-[60px] lg:text-[68px] font-extrabold leading-[1.02] mt-4 tracking-[-0.03em]">
-            Een greep uit het <span class="italic-serif text-mint-deep">werk</span>.
+            Gewerkt voor deze <span class="italic-serif text-mint-deep">ondernemers</span>.
           </h2>
         </div>
-        <a href="/werk" class="link-arrow">Alle klanten <Icon name="arrow" size={14} /></a>
+        <p class="max-w-sm text-[14.5px] leading-relaxed text-ink-soft">
+          Per klant verschilt het: soms een website, soms campagnes, soms strategie. In een gesprek vertel ik graag wat bij jouw situatie past.
+        </p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {featuredProjects.map((p, i) => {
+        {projects.map((p, i) => {
           const a = accentMap[p.bg];
           return (
             <article class="card overflow-hidden group" data-reveal style={`transition-delay: ${i * 40}ms`}>
