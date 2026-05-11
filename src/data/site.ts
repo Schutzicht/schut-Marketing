@@ -3,6 +3,10 @@ export const site = {
   owner: "Jorik Schut",
   founded: 2020,
   partnerSince: 2025,
+  // Vervang door je echte Formspree form-id na aanmelden op formspree.io.
+  // Aanmaak: nieuw form -> verbind aan jorik@schutmarketing.nl -> kopieer ID
+  // uit endpoint (https://formspree.io/f/XXXXXXXX) -> hier plakken.
+  formspreeId: "XXXXXXXX",
   tagline: "Websites en marketing die voor je werken.",
   intro:
     "Van frisse websites tot campagnes die echt klanten opleveren. Samen bouwen we aan jouw online groei, op een manier die simpel en effectief blijft.",
